@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class ChallengeTwo {
 
-    public static List<Integer> sortedSquares(int[] array, int S) {
+    public static int[] sortedSquares(int[] array, int S) {
         int SS = S * S;
         List<Integer> result = new ArrayList<>();
         
@@ -15,73 +15,35 @@ public class ChallengeTwo {
             }
         }
         
-        mergeSort(result, 0, result.size() - 1);
-        return result;
-    }
+        // Convert ArrayList to primitive int array
+        int[] array2 = new int[result.size()];
+        for (int i = 0; i < result.size(); i++) {
+            array2[i] = result.get(i);
+        }
 
-    private static void mergeSort(List<Integer> list, int left, int right) {
-        if (left < right) {
-            int mid = (left + right) / 2;
-            mergeSort(list, left, mid);
-            mergeSort(list, mid + 1, right);
-            merge(list, left, mid, right);
-        }
-    }
-
-    private static void merge(List<Integer> list, int left, int mid, int right) {
-        int n1 = mid - left + 1;
-        int n2 = right - mid;
-        
-        List<Integer> leftList = new ArrayList<>();
-        List<Integer> rightList = new ArrayList<>();
-        
-        for (int i = 0; i < n1; i++) {
-            leftList.add(list.get(left + i));
-        }
-        for (int j = 0; j < n2; j++) {
-            rightList.add(list.get(mid + 1 + j));
-        }
-        
-        int i = 0, j = 0, k = left;
-        while (i < n1 && j < n2) {
-            if (leftList.get(i) <= rightList.get(j)) {
-                list.set(k, leftList.get(i));
-                i++;
-            } else {
-                list.set(k, rightList.get(j));
-                j++;
-            }
-            k++;
-        }
-        
-        while (i < n1) {
-            list.set(k, leftList.get(i));
-            i++;
-            k++;
-        }
-        
-        while (j < n2) {
-            list.set(k, rightList.get(j));
-            j++;
-            k++;
-        }
+        mergeSortArray(array2);
+        return array2;
     }
 
     public static void main(String[] args) {
-        int S = 6;
+        int S = 9;
         int n = generateRandomN();
 
         int[] array = generateRandomArray(n);
         // Sort the generated array using custom merge sort
         array = mergeSortArray(array);
-        System.out.print("Generated and Sorted Array: ");
+        System.out.print("Generated Array: ");
         for (int num : array) {
             System.out.print(num + " ");
         }
         System.out.println();
         
-        List<Integer> result = sortedSquares(array, S);
-        System.out.println("Result: " + result);
+        int[] result = sortedSquares(array, S);
+        System.out.println("Result: " );
+        for (int num : result) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
     }
 
     public static int generateRandomN() {
