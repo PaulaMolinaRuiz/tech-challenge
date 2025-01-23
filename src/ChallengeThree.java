@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class ChallengeThree {
 
@@ -17,8 +18,17 @@ public class ChallengeThree {
     }
 
     public static void main(String[] args) {
-        int[] coins = {5, 7, 1, 1, 2, 3, 22};
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Enter the coin values separated by spaces:");
+        String[] input = scanner.nextLine().split(" ");
+        int[] coins = new int[input.length];
+        for (int i = 0; i < input.length; i++) {
+            coins[i] = Integer.parseInt(input[i]);
+        }
+        
         int result = nonConstructibleChange(coins);
-        System.out.println(result);
+        System.out.println("Minimum amount of change you cannot give: " + result);
     }
 }
+

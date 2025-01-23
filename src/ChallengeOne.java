@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class ChallengeOne {
 
@@ -26,9 +27,20 @@ public class ChallengeOne {
     }
 
     public static void main(String[] args) {
-        List<Integer> inputList = List.of(1, 2, 3, 4, 5, 6);
-        int S = 6;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the value of S:");
+        int S = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+        
+        System.out.println("Enter the numbers separated by spaces:");
+        String[] input = scanner.nextLine().split(" ");
+        List<Integer> inputList = new ArrayList<>();
+        for (String s : input) {
+            inputList.add(Integer.parseInt(s));
+        }
+        
         List<Integer> result = switchPositions(inputList, S);
-        System.out.println(result);
+        System.out.println("Result: " + result);
     }
 }
+

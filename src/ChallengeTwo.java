@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ChallengeTwo {
 
@@ -19,9 +20,20 @@ public class ChallengeTwo {
     }
 
     public static void main(String[] args) {
-        int[] array = {1, 2, 3, 5, 6, 8, 9};
-        int S = 6;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the value of S:");
+        int S = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+        
+        System.out.println("Enter the numbers separated by spaces:");
+        String[] input = scanner.nextLine().split(" ");
+        int[] array = new int[input.length];
+        for (int i = 0; i < input.length; i++) {
+            array[i] = Integer.parseInt(input[i]);
+        }
+        
         List<Integer> result = sortedSquares(array, S);
-        System.out.println(result);
+        System.out.println("Result: " + result);
     }
 }
+
