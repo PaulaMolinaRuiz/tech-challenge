@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Random;
 
 public class ChallengeOne {
 
@@ -27,20 +27,32 @@ public class ChallengeOne {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the value of S:");
-        int S = scanner.nextInt();
-        scanner.nextLine(); // consume newline
+        int S = 9;
+        int n = generateRandomN();
+
+        System.out.println("Generated n: " + n);
         
-        System.out.println("Enter the numbers separated by spaces:");
-        String[] input = scanner.nextLine().split(" ");
-        List<Integer> inputList = new ArrayList<>();
-        for (String s : input) {
-            inputList.add(Integer.parseInt(s));
-        }
+        List<Integer> inputList = generateRandomNumbers(n);
+        System.out.println("Generated List: " + inputList);
         
         List<Integer> result = switchPositions(inputList, S);
         System.out.println("Result: " + result);
+    }
+
+    public static int generateRandomN() {
+        Random random = new Random();
+        return random.nextInt(100) + 1; // Generates a random number between 1 and 100
+    }
+
+    public static List<Integer> generateRandomNumbers(int n) {
+        Random random = new Random();
+        List<Integer> randomNumbers = new ArrayList<>();
+        
+        for (int i = 0; i < n; i++) {
+            randomNumbers.add(random.nextInt(100));
+        }
+        
+        return randomNumbers;
     }
 }
 
