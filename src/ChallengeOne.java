@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -7,41 +6,48 @@ public class ChallengeOne {
 
     public static List<Integer> switchPositions(List<Integer> inputList, int S) {
         List<Integer> filteredList = new ArrayList<>();
+
+        int posicion = 0;
         
-        // Filter digits greater than or equal to S
-        for (Integer num : inputList) {
+        for (int i = inputList.size() - 1; i >= 0; i--) {
+            Integer num = inputList.get(i);
+            //System.out.println("leido"+num);
             StringBuilder newNum = new StringBuilder();
 
-            char[] digit = num.toString().toCharArray();
+            char[] digits = num.toString().toCharArray();
             
-            if (num< S) {
-                newNum.append(digit);
+            if (num < S) {
+                newNum.append(digits);
             }
-            else if(num > S){
-                
-                int digit0=Character.getNumericValue(digit[0]);
-                int digit1=Character.getNumericValue(digit[1]);
+            else if (num > S) {
+                int digit0 = Character.getNumericValue(digits[0]);
+                int digit1 = Character.getNumericValue(digits[1]);
 
-                if(digit0 < S && digit1 < S){
-                    newNum.append(digit);
+                if (digit0 < S && digit1 < S) {
+                    newNum.append(digits);
                 }
-                else if(digit0 > S && digit1 < S){
+                else if (digit0 >= S && digit1 < S) {
                     newNum.append(digit1);
                 }
-                else if(digit0 < S && digit1 > S)
-                {
+                else if (digit0 < S && digit1 >= S) {
                     newNum.append(digit0);
                 }
             }
 
             if (newNum.length() > 0) {
-                filteredList.add(Integer.parseInt(newNum.toString()));
+                filteredList.add(posicion, Integer.parseInt(newNum.toString()));
+                //System.out.println("agregadopos"+posicion);
+                //Integer num2 = filteredList.get(posicion);
+                posicion++;
+                //System.out.println("agregado"+num2);
+
             }
         }
-        
-        // Reverse the list
-        Collections.reverse(filteredList);
+
+       // System.out.println("final"+filteredList);
+
         return filteredList;
+        
     }
 
     public static void main(String[] args) {
@@ -73,4 +79,5 @@ public class ChallengeOne {
         return randomNumbers;
     }
 }
+
 
