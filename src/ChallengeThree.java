@@ -39,9 +39,10 @@ public class ChallengeThree {
     public static int[] generateRandomArray(int n) {
         Random random = new Random();
         int[] randomArray = new int[n];
+        //int[] coins = {5, 7, 1, 1, 2, 3, 22}; Test since most results will be 1 or 2
         
         for (int i = 0; i < n; i++) {
-            randomArray[i] = random.nextInt(100) + 1; // Generates random coins with values between 1 and 50
+            randomArray[i] = random.nextInt(100) + 1; // Generates random coins with values between 1 and 100
         }
         
         return randomArray;
